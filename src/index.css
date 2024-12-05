@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: 222 84% 55%;    /* Rich Blue */
+  --primary-dark: 222 84% 45%;
+  --secondary: 262 83% 58%;   /* Vibrant Purple */
+  --accent: 187 85% 43%;      /* Teal */
+  --success: 142 76% 43%;     /* Emerald */
+  --background: 222 50% 98%;
+  --foreground: 222 40% 15%;
+  --muted: 222 40% 96.1%;
+  --card: 0 0% 100%;
+  --border: 222 20% 92%;
+}
+
+.multi-gradient-text {
+  background: linear-gradient(
+    300deg,
+    hsl(var(--primary)) 0%,
+    hsl(var(--secondary)) 35%,
+    hsl(var(--accent)) 70%,
+    hsl(var(--primary)) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 8s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-100% - 2rem)); }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: linear-gradient(135deg, 
+    hsl(var(--background)), 
+    hsl(var(--muted))
+  );
+}
+
+.hero-section {
+  background: linear-gradient(135deg,
+    hsl(var(--primary) / 0.05) 0%,
+    hsl(var(--secondary) / 0.05) 50%,
+    hsl(var(--accent) / 0.05) 100%
+  );
+}
+
+.gradient-text {
+  background: linear-gradient(135deg,
+    hsl(var(--primary)) 0%,
+    hsl(var(--secondary)) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.navbar-gradient {
+  background: linear-gradient(to bottom,
+    hsl(var(--primary) / 0.05) 0%,
+    hsl(var(--primary) / 0.02) 100%
+  );
+  backdrop-filter: blur(8px);
+}
+
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+  border-radius: 1.5rem;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: hsl(var(--primary) / 0.2);
+  box-shadow: 
+    0 10px 40px -10px hsl(var(--primary) / 0.3),
+    0 0 0 1px hsl(var(--primary) / 0.1);
+}
+
+.button-gradient {
+  background: linear-gradient(135deg,
+    hsl(var(--primary)) 0%,
+    hsl(var(--secondary)) 100%
+  );
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+.button-gradient:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 
+    0 8px 24px -8px hsl(var(--primary) / 0.4),
+    0 0 0 2px hsl(var(--primary) / 0.2);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+}
+
+@layer components {
+  .btn {
+    @apply rounded-xl px-6 py-3 font-medium transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))]
+           text-white shadow-lg shadow-primary/25 hover:shadow-primary/40
+           hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-outline {
+    @apply border-2 border-[hsl(var(--primary))] text-[hsl(var(--primary))]
+           hover:bg-[hsl(var(--primary))] hover:text-white
+           hover:shadow-lg hover:shadow-primary/25;
+  }
+}
